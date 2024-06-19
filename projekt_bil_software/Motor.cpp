@@ -26,7 +26,7 @@ Motor::Motor():speed_(0), forward_direction_(true) {
 	// Bit 1 & 0: PWM, Phase correct, 10-bit (TOP = 1024)
 	TCCR1A = 0b10000011;
 	// Bit 2, 1 & 0: Prescaler = 8
-	TCCR1B = 0b00000010;
+	TCCR1B = 0b00000011;
 	// With the above settings, the frequency will be ~977.5 Hz
 	// I think we should aim for a PWM frequency of about 1 kHz, since this seemed like an okay value for the motor. 
 	// Otherwise, we will have to test out which frequency works the best

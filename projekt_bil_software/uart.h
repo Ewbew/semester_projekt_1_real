@@ -6,9 +6,9 @@
 // Target CPU frequency
 #define XTAL 16000000
 
-void InitUART(unsigned long baudRate, unsigned char dataBits);
-unsigned char CharReady();
-char ReadChar();
-void SendChar(char character);
-void SendString(char* string);
-void SendInteger(int number);
+void init_UART(unsigned long baud_rate, unsigned char data_bits);
+unsigned char char_ready();
+char read_char();
+void send_char(char character);
+void send_string(char* string);
+void send_integer(int number);

@@ -3,7 +3,7 @@
 
 class SoundDriver {
 public:
-	SoundDriver (unsigned char initVolume);
-	void PlaySound(unsigned char soundIndex);
-	void SetVolume(unsigned char volume);
+	SoundDriver (unsigned char init_volume);
+	void play_sound(unsigned char sound_index);
+	void set_volume(unsigned char volume);
 };

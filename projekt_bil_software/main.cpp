@@ -14,7 +14,7 @@
 #include "Motor.h"
 #include "Lights.h"
 
-#define DEBOUNCE_DELAY_MS 150
+#define DEBOUNCE_DELAY_MS 300
 
 // Start variable sættes til at være false til at starte med; skiftes til true i ISR for INT0, 
 // som aktiveres ved et tryk på en eksterne knap på bilen
@@ -29,9 +29,9 @@ void handle_interrupt() {
 	control.increment_counter();
 	motor.set_speed(control.get_speed());
 	motor.set_forward_direction(control.is_forward_direction());
-	sound.PlaySound(control.counter == 11 ? 2 : 3);
+	sound.play_sound(control.get_counter() == 11 ? 2 : 3);
 	lights.set_lights(control.get_lights_state());
-	if(control.get_brake_state() && control.counter < 11) lights.activate_brake_state();
+	if(control.get_brake_state() && control.get_counter() < 11) lights.activate_brake_state();
 	// Vi dissabler de to ISR for refleksbrikkerne kortvarigt, for at være sikker på,
 	//at der kun bliver talt op én gang per reflekspar på banen:
 	EIMSK &= 0b11111001;
@@ -40,7 +40,7 @@ void handle_interrupt() {
 	// For at være på den sikre side, så nulstiller vi interruptsflagene for INT1 & INT2, i tilfælde af, at de var blevet sat.
 	// Man nulstiller dem ved at skrive 1 til de tilsvarende bit pladser i flag registret:
 	if(EIFR != 0){
-		EIFR |= 0b00000111
+		EIFR |= 0b00000111;
 	}
 	
 	// Vi enabler de to interrupts for INT1 og INT2 igen
@@ -93,7 +93,7 @@ int main(void)
 		_delay_ms(DEBOUNCE_DELAY_MS);
 	}
 	
-	sound.PlaySound(1);
+	sound.play_sound(1);
 	lights.set_lights(control.get_lights_state());
 	motor.set_speed(control.get_speed());
 	sei();

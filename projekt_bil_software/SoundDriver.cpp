@@ -1,40 +1,40 @@
 #include "SoundDriver.h"
 
-SoundDriver::SoundDriver(unsigned char initVolume) {
-	InitUART(9600, 8);
-	if (initVolume < 0) initVolume = 0; // Limits to min volume of 0
-	if (initVolume > 30) initVolume = 30; // Limits to max volume of 30
-	SetVolume(initVolume);
+SoundDriver::SoundDriver(unsigned char init_volume) {
+	init_UART(9600, 8);
+	if (init_volume < 0) init_volume = 0; // Limits to min volume of 0
+	if (init_volume > 30) init_volume = 30; // Limits to max volume of 30
+	set_volume(init_volume);
 }
 
-void SoundDriver::PlaySound(unsigned char soundIndex) {
-	SendChar(0x7E);
-	SendChar(0x03);
-	SendChar(0x00);
-	SendChar(0x00);
-	SendChar(soundIndex);
+void SoundDriver::play_sound(unsigned char sound_index) {
+	send_char(0x7E);
+	send_char(0x03);
+	send_char(0x00);
+	send_char(0x00);
+	send_char(sound_index);
 	
 	// We are calculating checksum, which is used for detecting errors in the code.
-	unsigned int checksum = 0xFFFF - (0x03+soundIndex) + 1;
+	unsigned int checksum = 0xFFFF - (0x03+sound_index) + 1;
 	unsigned char ck_sum1 = checksum>>8;
 	unsigned char ck_sum2 = checksum & 0xFF;
-	SendChar(ck_sum1);
-	SendChar(ck_sum2);
-	SendChar(0xEF);
+	send_char(ck_sum1);
+	send_char(ck_sum2);
+	send_char(0xEF);
 }
 
-void SoundDriver::SetVolume(unsigned char volume) {
-	SendChar(0x7E);
-	SendChar(0x06);
-	SendChar(0x00);
-	SendChar(0x00);
-	SendChar(volume);
+void SoundDriver::set_volume(unsigned char volume) {
+	send_char(0x7E);
+	send_char(0x06);
+	send_char(0x00);
+	send_char(0x00);
+	send_char(volume);
 	
 	unsigned int checksum = 0xFFFF - (0x06+volume) + 1;
 	unsigned char ck_sum1 = checksum>>8;
 	unsigned char ck_sum2 = checksum & 0xFF;
-	SendChar(ck_sum1);
-	SendChar(ck_sum2);
-	SendChar(0xF5);
-	SendChar(0xEF);
+	send_char(ck_sum1);
+	send_char(ck_sum2);
+	send_char(0xF5);
+	send_char(0xEF);
 }

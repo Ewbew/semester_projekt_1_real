@@ -13,12 +13,18 @@ class DrivingControl{
 		bool previous_direction_;
 		static const int SPEED_LEVELS[]; 
 		static const int MAX_COUNTER;
+		int counter_;
 	public:
-		int counter = 0;
 
 		DrivingControl();
 
 		// Klassemetoderne tager ikke noget input; de henter blot værdien for counter fra klasse instansen
+		
+		// Returværdi bruges til; conditial statements til main
+		int get_counter();
+		
+		// Bruges til at tælle  counter op gennem ISR 1 og 2
+		void increment_counter();
 
 		// Returværdi bruges til; Motor
 		int get_speed();
@@ -31,7 +37,5 @@ class DrivingControl{
 	
 		// Returværdi bruges til; Light
 		bool get_brake_state();
-		
-		void increment_counter();
 	
 };
