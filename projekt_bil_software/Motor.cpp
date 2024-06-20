@@ -24,7 +24,7 @@ Motor::Motor():speed_(0), forward_direction_(true) {
 	// Bit 7 & 6: Clearing when upcounting, setting when downcounting (compare match); output pin is OC1A (PB, ben 5
 	// Bit 1 & 0: PWM, Phase correct, 10-bit (TOP = 1024)
 	TCCR1A = 0b10000011;
-	// Bit 2, 1 & 0: Prescaler = 64 (is subject to change – e.g. if set to 8, the frequency will be about 977 Hz)
+	// Bit 2, 1 & 0: Prescaler = 64, frekvens = 122 (is subject to change – e.g. if set to 8, the frequency will be about 977 Hz)
 	TCCR1B = 0b00000011;
 	
 	// When setting OCR1A to be equal TOP (2^10), then duty cycle is:

@@ -9,7 +9,7 @@
 
 // Her bestemmes de forskellige hastigeheder, for det forskellige værdier for counter_ (refleksbriktællerværdier) 
 // Der er i alt 11 forskellige værdier, én for hver refleksbrik
-const int DrivingControl::SPEED_LEVELS[] = {100, 100, 100, 60, 90, 90, 90, 90, 100, 100, 65, 0};
+const int DrivingControl::SPEED_LEVELS[] = {100, 100, 100, 60, 90, 90, 90, 90, 100, 100, 55, 0};
 const int DrivingControl::MAX_COUNTER = sizeof(SPEED_LEVELS) / sizeof(SPEED_LEVELS[0]);
 
 
