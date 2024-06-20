@@ -683,19 +683,19 @@ END GROUP
  .debug_frame   0x00000250       0x6c SoundDriver.o
  .debug_frame   0x000002bc       0x9c uart.o
 
-.debug_str      0x00000000      0xbd8
+.debug_str      0x00000000      0xc41
  *(.debug_str)
  .debug_str     0x00000000      0x3e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega2560/avr6/crtatmega2560.o
  .debug_str     0x000003e6      0x3b5 DrivingControl.o
  .debug_str     0x0000079b       0xd7 Lights.o
                                 0x263 (size before relaxing)
- .debug_str     0x00000872      0x1f7 main.o
-                                0x5f6 (size before relaxing)
- .debug_str     0x00000a69       0x1d Motor.o
+ .debug_str     0x00000872      0x260 main.o
+                                0x5f5 (size before relaxing)
+ .debug_str     0x00000ad2       0x1d Motor.o
                                 0x27b (size before relaxing)
- .debug_str     0x00000a86       0x8c SoundDriver.o
+ .debug_str     0x00000aef       0x8c SoundDriver.o
                                 0x2c2 (size before relaxing)
- .debug_str     0x00000b12       0xc6 uart.o
+ .debug_str     0x00000b7b       0xc6 uart.o
                                 0x2c6 (size before relaxing)
 
 .debug_loc      0x00000000      0x997
