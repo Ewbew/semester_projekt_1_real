@@ -37,5 +37,8 @@ class DrivingControl{
 	
 		// Returværdi bruges til; Light
 		bool get_brake_state();
+		
+		// Returværdi bruges til; Sound
+		int get_sound_index();
 	
 };

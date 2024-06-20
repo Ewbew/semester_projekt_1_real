@@ -9,7 +9,7 @@
 
 // Her bestemmes de forskellige hastigeheder, for det forskellige værdier for counter_ (refleksbriktællerværdier) 
 // Der er i alt 11 forskellige værdier, én for hver refleksbrik
-const int DrivingControl::SPEED_LEVELS[] = {100, 100, 100, 100, 90, 100, 100, 100, 100, 100, 70, 0};
+const int DrivingControl::SPEED_LEVELS[] = {100, 100, 100, 60, 90, 90, 90, 90, 100, 100, 65, 0};
 const int DrivingControl::MAX_COUNTER = sizeof(SPEED_LEVELS) / sizeof(SPEED_LEVELS[0]);
 
 
@@ -57,4 +57,14 @@ bool DrivingControl::get_brake_state(){
 	previous_direction_ = current_direction;
 
 	return should_brake;
+}
+
+int DrivingControl::get_sound_index(){
+	if (counter_ == 0){
+		return 1;
+	} else if (counter_ > 0 && counter_ < 11){
+		return 2;
+	} else{
+		return 3;
+	}
 }

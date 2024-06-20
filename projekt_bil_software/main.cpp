@@ -15,13 +15,14 @@
 #include "Lights.h"
 
 #define DEBOUNCE_DELAY_MS 300
+#define START_DELAY_FOR_SOUND 5500
 
 // Start variable sættes til at være false til at starte med; skiftes til true i ISR for INT0, 
 // som aktiveres ved et tryk på en eksterne knap på bilen
 volatile bool start = false;
 
 DrivingControl control;
-SoundDriver sound(15);
+SoundDriver sound(30);
 Motor motor;
 Lights lights;
 
@@ -41,7 +42,7 @@ void handle_interrupt() {
 	
 	// Sound objektet spiller en lyd, som er bestemt af DrivingControl objektet ud fra hvad counter_ er.
 	// control.get_counter() returnerer en integer, som er counter af refleksbriksignaler.
-	sound.play_sound(control.get_counter() == 11 ? 2 : 3);
+	sound.play_sound(control.get_sound_index());
 	
 	// Lights objektet bestemmer tilstanden for- og baglysene, som er bestem af DrivingControl objektet ud fra hvad counter_ er.
 	// control.get_lights_state() returnerer en bool – hvis den er true, så tændes for- og baglysene og omvendt for false.
@@ -121,13 +122,15 @@ int main(void)
 	
 	//// Start rutine, som sætter bilen i gang
 	// Startlyd afspilles
-	sound.play_sound(1);
+	sound.play_sound(control.get_sound_index());
 	
-	// Lysene tændes (siden counter_ fra DrivingControl objektet på dettet tidspunkt er counter_ = 0
-	lights.set_lights(control.get_lights_state());
+	_delay_ms(START_DELAY_FOR_SOUND);
 	
 	// Motorhastigheden sættes, ud fra hvad counter_ er DrivingControl objektet (ved counter_ = 0 er hastigheden 100)
 	motor.set_speed(control.get_speed());
+	
+	// Lysene tændes (siden counter_ fra DrivingControl objektet på dettet tidspunkt er counter_ = 0
+	lights.set_lights(control.get_lights_state());
 	
 	// Enable global interrupt flag:
 	sei();
